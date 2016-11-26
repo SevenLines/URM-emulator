@@ -1,5 +1,7 @@
-open class URMCommand(var program: URMProgram) {
+open class URMCommand(var program: URMProgram?) {
     open fun Execute() {
-        program.currentCommandIndex++;
+        if (program != null) {
+            program!!.currentCommandIndex++;
+        }
     }
 }

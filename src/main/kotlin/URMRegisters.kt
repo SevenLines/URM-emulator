@@ -8,6 +8,8 @@ class URMRegisters {
     }
 
     operator fun get(reg: Int): URMRegister {
-        return registers.getOrElse(reg) {URMRegister()}
+        val register = registers.getOrElse(reg) {URMRegister()}
+        registers[reg] = register
+        return register
     }
 }

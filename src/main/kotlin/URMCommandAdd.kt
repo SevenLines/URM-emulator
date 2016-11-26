@@ -1,6 +1,8 @@
-class URMCommandAdd(program: URMProgram, var reg: Int) : URMCommand(program) {
+class URMCommandAdd(var reg: Int, program: URMProgram? = null) : URMCommand(program) {
     override fun Execute() {
         super.Execute()
-        program.registers[reg].value++
+        if (program != null) {
+            program!!.registers[reg].value++
+        }
     }
 }
