@@ -1,3 +1,5 @@
+package core
+
 class URMCommandJump(var reg1: Int, var reg2: Int, var commandIndex: Int, program: URMProgram? = null) : URMCommand(program) {
     override fun Execute() {
         super.Execute()

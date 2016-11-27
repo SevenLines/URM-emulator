@@ -1,3 +1,5 @@
+package core
+
 class URMProgram {
     private var commands : MutableList<URMCommand> = mutableListOf()
     var registers : URMRegisters = URMRegisters()
