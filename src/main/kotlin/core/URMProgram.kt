@@ -1,14 +1,24 @@
 package core
 
-class URMProgram {
-    private var commands : MutableList<URMCommand> = mutableListOf()
-    var registers : URMRegisters = URMRegisters()
+open class URMProgram {
+    var commands: MutableList<URMCommand> = mutableListOf()
+        get() {
+            return field
+        }
+
+    var registers: URMRegisters = URMRegisters()
 
     var currentCommandIndex: Int = 0
         get() = field
         set(value) {
             field = value
         }
+
+    var currentCommand: URMCommand? = null
+        get() {
+            return commands.getOrNull(currentCommandIndex)
+        }
+
     var stepsCount: Int = 0
         get() = field
         private set(value) {
@@ -34,7 +44,7 @@ class URMProgram {
         commands.removeAt(index)
     }
 
-    fun Step() : Boolean {
+    fun Step(): Boolean {
         if (!HasComplete) {
             this[currentCommandIndex].Execute()
             stepsCount += 1
@@ -47,10 +57,10 @@ class URMProgram {
         stepsCount = 0
     }
 
-    val HasComplete : Boolean
+    val HasComplete: Boolean
         get() = currentCommandIndex >= commands.count() || currentCommandIndex < 0
 
-    operator fun get(index: Int) : URMCommand {
+    operator fun get(index: Int): URMCommand {
         return commands[index]
     }
 }

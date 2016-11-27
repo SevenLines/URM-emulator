@@ -9,7 +9,7 @@
 <HBox alignment="CENTER" prefHeight="36.0" prefWidth="142.0" spacing="5.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label minWidth="-Infinity" text="T(" HBox.hgrow="ALWAYS" />
-      <TextField id="edtReg" />
+      <TextField fx:id="edtReg" id="edtReg" />
       <Label minWidth="-Infinity" text=")" />
    </children>
    <padding>
