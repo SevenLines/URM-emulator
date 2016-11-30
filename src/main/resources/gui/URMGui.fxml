@@ -4,50 +4,49 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Slider?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
-   <top>
-      <HBox alignment="CENTER" spacing="5.0" BorderPane.alignment="CENTER">
+
+<AnchorPane prefHeight="283.0" prefWidth="396.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button id="btnStep" fx:id="btnStep" mnemonicParsing="false" text="Step" />
-            <Pane HBox.hgrow="ALWAYS" />
-            <Label text="Speed" />
-            <Slider id="sldSpeed" fx:id="sldSpeed" />
-            <Button id="btnPlay" fx:id="btnPlay" mnemonicParsing="false" text="Play" />
-         </children>
-         <BorderPane.margin>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </BorderPane.margin>
-      </HBox>
-   </top>
-   <bottom>
-      <HBox prefHeight="66.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
-   </bottom>
-   <center>
-      <VBox id="lstCommands" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
-   </center>
-   <right>
-      <HBox BorderPane.alignment="CENTER">
-         <BorderPane.margin>
-            <Insets />
-         </BorderPane.margin>
-         <children>
-            <VBox spacing="5.0">
+            <HBox alignment="CENTER" spacing="5.0">
                <children>
-                  <Button fx:id="btnAdd" mnemonicParsing="false" text="Add" VBox.vgrow="ALWAYS" />
-                  <Button fx:id="btnCopy" mnemonicParsing="false" text="Copy" VBox.vgrow="ALWAYS" />
-                  <Button fx:id="btnZero" mnemonicParsing="false" text="Zero" VBox.vgrow="ALWAYS" />
-                  <Button fx:id="btnJump" mnemonicParsing="false" text="Jump" VBox.vgrow="ALWAYS" />
+                  <Button id="btnStep" fx:id="btnStep" mnemonicParsing="false" text="Step" />
+                  <Pane HBox.hgrow="ALWAYS" />
+                  <Label text="Speed" />
+                  <Slider id="sldSpeed" fx:id="sldSpeed" />
+                  <Button id="btnPlay" fx:id="btnPlay" mnemonicParsing="false" text="Play" />
+                  <Button id="btnReset" fx:id="btnReset" mnemonicParsing="false" text="Play" />
                </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
-            </VBox>
+            </HBox>
+            <HBox prefHeight="174.0" prefWidth="248.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <AnchorPane fx:id="programPane" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                  <VBox spacing="5.0">
+                     <children>
+                        <Button fx:id="btnAdd" mnemonicParsing="false" text="Add" VBox.vgrow="ALWAYS" />
+                        <Button fx:id="btnCopy" mnemonicParsing="false" text="Copy" VBox.vgrow="ALWAYS" />
+                        <Button fx:id="btnZero" mnemonicParsing="false" text="Zero" VBox.vgrow="ALWAYS" />
+                        <Button fx:id="btnJump" mnemonicParsing="false" text="Jump" VBox.vgrow="ALWAYS" />
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </HBox>
          </children>
-      </HBox>
-   </right>
-</BorderPane>
+      </VBox>
+   </children>
+</AnchorPane>

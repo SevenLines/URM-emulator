@@ -14,6 +14,9 @@ class URMGuiCommandZero (override var command: URMCommand) : URMGuiCommand(comma
     val realCommand = command as URMCommandZero
 
     init {
+        super.init()
+        lateInit()
+
         edtReg.text = realCommand.reg.toString()
         edtReg.textProperty().onChange {
             (command as? URMCommandZero)?.reg = it.orEmpty().toInt()

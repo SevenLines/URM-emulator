@@ -18,6 +18,8 @@ class URMGuiCommandCopy(override var command: URMCommand) : URMGuiCommand(comman
     var realCommand: URMCommandCopy = command as URMCommandCopy
 
     init {
+        super.init()
+        lateInit()
         edtReg1.text = realCommand.reg1.toString()
         edtReg2.text = realCommand.reg2.toString()
         edtReg1.textProperty().onChange {

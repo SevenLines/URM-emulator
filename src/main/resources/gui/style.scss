@@ -1,0 +1,56 @@
+.command {
+  -fx-border-radius: 8;
+  -fx-background-radius: 9;
+  -fx-border-style: solid;
+  -fx-border-width: 3px;
+  -fx-font-size: 1.5em;
+  .label {
+  }
+  .text-field {
+    -fx-padding: 0;
+    -fx-min-width: 38px;
+    -fx-max-width: 38px;
+    -fx-alignment: center;
+  }
+}
+
+@mixin commandClr($color) {
+  -fx-background-color: $color;
+  -fx-border-color: darken($color, 20);
+  -fx-cursor: hand;
+  &:hover {
+    -fx-border-color: darken($color, 40);
+  }
+  &.current {
+    -fx-border-color: red;
+  }
+  .text-field {
+    -fx-background-color: lighten($color, 3);
+    -fx-border-style: none;
+    &:focused {
+      -fx-background-color: lighten($color, 10);
+    }
+  }
+}
+
+.add {
+  $color: greenyellow;
+  @include commandClr($color);
+}
+
+.jump {
+  $color: #ffbd1f;
+  @include commandClr($color);
+}
+
+.zero {
+  $color: #3ecfff;
+  @include commandClr($color);
+}
+
+.copy {
+  $color: #c9a8ff;
+  @include commandClr($color);
+}
+
+

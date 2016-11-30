@@ -2,6 +2,7 @@ package gui.components
 
 import core.*
 import javafx.scene.Parent
+import javafx.scene.layout.AnchorPane
 import javafx.scene.layout.HBox
 import javafx.scene.layout.VBox
 import tornadofx.Fragment
@@ -10,7 +11,8 @@ import tornadofx.addChildIfPossible
 
 
 class URMGuiProgram(var program: URMProgram?) : Fragment() {
-    override val root: VBox by fxml()
+    override val root: AnchorPane by fxml()
+    val commandsList: VBox by fxid()
 
     private fun GetComponentForCommand(command: URMCommand): URMGuiCommand? {
         if (command.javaClass == URMCommandAdd::class.java) {
@@ -33,20 +35,20 @@ class URMGuiProgram(var program: URMProgram?) : Fragment() {
         program?.Reset()
     }
 
-    fun AddCommand(command: URMCommand, index: Int = 0) {
+    fun AddCommand(command: URMCommand, index: Int = -1) {
         command.program = program
-        program?.commands?.add(index, command)
+        program?.AddCommand(command, index)
         if (program != null) {
             var commandComponent = GetComponentForCommand(command)
             if (commandComponent !=null) {
-                root.add(commandComponent.root)
+                commandsList.add(commandComponent.root)
             }
         }
     }
 
     fun RemoveCommand(index: Int) {
         if (program != null) {
-            root.children.removeAt(index)
+            commandsList.children.removeAt(index)
             program?.RemoveCommand(index)
         }
     }

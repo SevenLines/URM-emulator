@@ -16,6 +16,9 @@ class URMGuiCommandJump (override var command: URMCommand) : URMGuiCommand(comma
     val realCommand = command as URMCommandJump
 
     init {
+        super.init()
+        lateInit()
+
         edtReg1.text = realCommand.reg1.toString()
         edtReg2.text = realCommand.reg2.toString()
         edtCommandIndex.text = realCommand.commandIndex.toString()

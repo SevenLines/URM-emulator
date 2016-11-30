@@ -11,6 +11,16 @@ open class URMProgram {
     var currentCommandIndex: Int = 0
         get() = field
         set(value) {
+            // set to false old value
+            if (field != value)
+                if (field >= 0 && commands.count() > field)
+                    commands[field].isActive.value = false
+
+            // set to true new value
+            if (value >= 0 && commands.count() > value)
+                if (commands[value].isActive.value != true)
+                    commands[value].isActive.value = true
+
             field = value
         }
 
@@ -25,8 +35,8 @@ open class URMProgram {
             field = value
         }
 
-    fun AddCommand(command: URMCommand, index: Int = 0) {
-        if (index != 0) {
+    fun AddCommand(command: URMCommand, index: Int = -1) {
+        if (index != -1) {
             commands.add(index, command)
         } else {
             commands.add(command)

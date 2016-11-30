@@ -15,6 +15,8 @@ class URMGuiCommandAdd (override var command: URMCommand) : URMGuiCommand(comman
 
 
     init {
+        super.init()
+        lateInit()
         edtReg.text = realCommand.reg.toString()
         edtReg.textProperty().onChange {
             realCommand?.reg = it.orEmpty().toInt()
