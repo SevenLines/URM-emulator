@@ -9,11 +9,31 @@
     -fx-min-width: 38px;
     -fx-max-width: 38px;
     -fx-alignment: center; }
+  .command .button {
+    -fx-border-style: solid;
+    -fx-border-width: 0 0 0 2px;
+    -fx-background-radius: 0 7 7 0; }
+
+.button {
+  -fx-background-color: white;
+  -fx-cursor: hand; }
+  .button:hover {
+    -fx-background-color: whitesmoke; }
+
+.toolbar {
+  -fx-background-color: #b7ceff; }
 
 .add {
   -fx-background-color: greenyellow;
   -fx-border-color: #79c800;
   -fx-cursor: hand; }
+  .add .button.remove {
+    -fx-border-color: #79c800;
+    -fx-text-fill: #833309;
+    -fx-background-color: #e25910; }
+    .add .button.remove:hover {
+      -fx-text-fill: #532106;
+      -fx-background-color: #ef661d; }
   .add:hover {
     -fx-border-color: #3b6200; }
   .add.current {
@@ -28,6 +48,13 @@
   -fx-background-color: #ffbd1f;
   -fx-border-color: #b88200;
   -fx-cursor: hand; }
+  .jump .button.remove {
+    -fx-border-color: #b88200;
+    -fx-text-fill: #a42500;
+    -fx-background-color: #ff420b; }
+    .jump .button.remove:hover {
+      -fx-text-fill: #711900;
+      -fx-background-color: #ff5625; }
   .jump:hover {
     -fx-border-color: #523a00; }
   .jump.current {
@@ -42,6 +69,13 @@
   -fx-background-color: #3ecfff;
   -fx-border-color: #00a2d7;
   -fx-cursor: hand; }
+  .zero .button.remove {
+    -fx-border-color: #00a2d7;
+    -fx-text-fill: #722b35;
+    -fx-background-color: #bb4859; }
+    .zero .button.remove:hover {
+      -fx-text-fill: #4d1d24;
+      -fx-background-color: #c25b6a; }
   .zero:hover {
     -fx-border-color: #005571; }
   .zero.current {
@@ -56,6 +90,13 @@
   -fx-background-color: #c9a8ff;
   -fx-border-color: #8a42ff;
   -fx-cursor: hand; }
+  .copy .button.remove {
+    -fx-border-color: #8a42ff;
+    -fx-text-fill: #b0112c;
+    -fx-background-color: #ec3b59; }
+    .copy .button.remove:hover {
+      -fx-text-fill: #810d20;
+      -fx-background-color: #ee526d; }
   .copy:hover {
     -fx-border-color: #5300db; }
   .copy.current {

@@ -54,6 +54,11 @@ open class URMProgram {
         commands.removeAt(index)
     }
 
+    fun RemoveCommand(command: URMCommand) {
+        command.program = null
+        commands.remove(command)
+    }
+
     fun Step(): Boolean {
         if (!HasComplete) {
             this[currentCommandIndex].Execute()

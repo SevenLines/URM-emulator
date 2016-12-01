@@ -10,7 +10,8 @@ import tornadofx.Fragment
 import tornadofx.View
 import tornadofx.onChange
 
-class URMGuiCommandCopy(override var command: URMCommand) : URMGuiCommand(command) {
+class URMGuiCommandCopy (override var command: URMCommand, override var guiProgram: URMGuiProgram) :
+        URMGuiCommand(command, guiProgram) {
     override val root: HBox by fxml()
     val edtReg1: TextField by fxid()
     val edtReg2: TextField by fxid()

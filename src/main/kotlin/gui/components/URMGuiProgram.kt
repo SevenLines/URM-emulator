@@ -8,6 +8,7 @@ import javafx.scene.layout.VBox
 import tornadofx.Fragment
 import tornadofx.add
 import tornadofx.addChildIfPossible
+import tornadofx.removeFromParent
 
 
 class URMGuiProgram(var program: URMProgram?) : Fragment() {
@@ -16,13 +17,13 @@ class URMGuiProgram(var program: URMProgram?) : Fragment() {
 
     private fun GetComponentForCommand(command: URMCommand): URMGuiCommand? {
         if (command.javaClass == URMCommandAdd::class.java) {
-            return URMGuiCommandAdd(command)
+            return URMGuiCommandAdd(command, this)
         } else if (command.javaClass == URMCommandCopy::class.java) {
-            return URMGuiCommandCopy(command)
+            return URMGuiCommandCopy(command, this)
         } else if (command.javaClass == URMCommandJump::class.java) {
-            return URMGuiCommandJump(command)
+            return URMGuiCommandJump(command, this)
         } else if (command.javaClass == URMCommandZero::class.java) {
-            return URMGuiCommandZero(command)
+            return URMGuiCommandZero(command, this)
         }
         return null
     }
@@ -50,6 +51,13 @@ class URMGuiProgram(var program: URMProgram?) : Fragment() {
         if (program != null) {
             commandsList.children.removeAt(index)
             program?.RemoveCommand(index)
+        }
+    }
+
+    fun RemoveCommand(command: URMGuiCommand) {
+        if (program != null) {
+            command.removeFromParent()
+            program?.RemoveCommand(command.command)
         }
     }
 }

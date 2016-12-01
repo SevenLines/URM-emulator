@@ -12,12 +12,42 @@
     -fx-max-width: 38px;
     -fx-alignment: center;
   }
+  .button {
+    -fx-border-style:  solid;
+    -fx-border-width: 0 0 0 2px;
+    -fx-background-radius: 0 7 7 0;
+  }
 }
+
+.button {
+  //-fx-border-style: solid;
+  //-fx-border-color: darkcyan;
+  //-fx-border-width: 3px;
+  -fx-background-color: white;
+  -fx-cursor: hand;
+  &:hover {
+    -fx-background-color: whitesmoke;
+  }
+}
+
+.toolbar {
+  -fx-background-color: #b7ceff;
+}
+
 
 @mixin commandClr($color) {
   -fx-background-color: $color;
   -fx-border-color: darken($color, 20);
   -fx-cursor: hand;
+  .button.remove {
+    -fx-border-color: darken($color, 20);
+    -fx-text-fill: darken(mix(red, $color, 65%), 20);
+    -fx-background-color: mix(red, $color, 65%);
+    &:hover {
+      -fx-text-fill: darken(mix(red, $color, 65%), 30);
+      -fx-background-color: lighten(mix(red, $color, 65%), 5);
+    }
+  }
   &:hover {
     -fx-border-color: darken($color, 40);
   }

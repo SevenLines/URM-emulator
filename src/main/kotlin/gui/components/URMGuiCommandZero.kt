@@ -8,7 +8,8 @@ import javafx.scene.layout.HBox
 import tornadofx.Fragment
 import tornadofx.onChange
 
-class URMGuiCommandZero (override var command: URMCommand) : URMGuiCommand(command) {
+class URMGuiCommandZero  (override var command: URMCommand, override var guiProgram: URMGuiProgram) :
+        URMGuiCommand(command, guiProgram) {
     override val root: HBox by fxml()
     val edtReg: TextField by fxid()
     val realCommand = command as URMCommandZero

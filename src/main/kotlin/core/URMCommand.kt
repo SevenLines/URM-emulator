@@ -9,5 +9,9 @@ open class URMCommand(var program: URMProgram?) {
         }
     }
 
+    fun Remove() {
+        program?.RemoveCommand(this)
+    }
+
     var isActive : SimpleBooleanProperty = SimpleBooleanProperty(false)
 }
