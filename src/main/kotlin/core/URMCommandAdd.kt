@@ -4,7 +4,7 @@ class URMCommandAdd(var reg: Int, program: URMProgram? = null) : URMCommand(prog
     override fun Execute() {
         super.Execute()
         if (program != null) {
-            program!!.registers[reg].value++
+            program!!.registers[reg] = program!!.registers[reg].value + 1
         }
     }
 }

@@ -70,6 +70,7 @@ open class URMProgram {
     fun Reset() {
         currentCommandIndex = 0
         stepsCount = 0
+        registers.Reset()
     }
 
     val HasComplete: Boolean

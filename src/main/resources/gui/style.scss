@@ -19,6 +19,19 @@
   }
 }
 
+.register {
+  -fx-font-size: 1.5em;
+  -fx-background-color: white;
+  -fx-border-width: 3px;
+  -fx-border-color: black;
+  -fx-border-style: solid;
+}
+
+.registerIndex {
+  -fx-font-size: 0.75em;
+  -fx-background-color: white;
+}
+
 .button {
   //-fx-border-style: solid;
   //-fx-border-color: darkcyan;
@@ -31,7 +44,7 @@
 }
 
 .toolbar {
-  -fx-background-color: #b7ceff;
+  -fx-background-color: silver;
 }
 
 

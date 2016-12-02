@@ -5,6 +5,8 @@ import gui.components.*
 import javafx.event.EventHandler
 import javafx.scene.Parent
 import javafx.scene.control.Button
+import javafx.scene.control.ScrollBar
+import javafx.scene.control.ScrollPane
 import javafx.scene.control.Slider
 import javafx.scene.layout.AnchorPane
 import javafx.scene.layout.BorderPane
@@ -18,6 +20,8 @@ import tornadofx.singleAssign
 class URMGui : View() {
     override val root: AnchorPane by fxml()
     val programPane: AnchorPane by fxid()
+    val registersWrapper: ScrollPane by fxid()
+
     val btnStep: Button by fxid()
     val btnPlay: Button by fxid()
     val btnReset: Button by fxid()
@@ -28,6 +32,7 @@ class URMGui : View() {
     val btnZero: Button by fxid()
     val btnJump: Button by fxid()
     var guiProgramm: URMGuiProgram by singleAssign()
+    var guiRegisters: URMGuiRegisters by singleAssign()
 
     init {
         btnStep.onAction = EventHandler {
@@ -36,6 +41,7 @@ class URMGui : View() {
 
         btnReset.onAction = EventHandler {
             guiProgramm.Reset()
+            guiRegisters.Reset()
         }
 
         btnAdd.onAction = EventHandler {
@@ -57,6 +63,11 @@ class URMGui : View() {
         AnchorPane.setRightAnchor(guiProgramm.root, 0.0);
         AnchorPane.setTopAnchor(guiProgramm.root, 0.0);
         programPane.add(guiProgramm.root)
+
+        val registers = guiProgramm.program?.registers!!
+        guiRegisters = URMGuiRegisters(registers)
+        registers.registerListeners.add(guiRegisters)
+        registersWrapper.add(guiRegisters.root)
     }
 
 }
