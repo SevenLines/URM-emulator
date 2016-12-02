@@ -2,6 +2,7 @@ package gui
 
 import core.*
 import gui.components.*
+import javafx.beans.property.SimpleBooleanProperty
 import javafx.event.EventHandler
 import javafx.scene.Parent
 import javafx.scene.control.Button
@@ -27,47 +28,70 @@ class URMGui : View() {
     val btnReset: Button by fxid()
     val sldSpeed: Slider by fxid()
 
+    private var progress = SimpleBooleanProperty(false);
+
     val btnAdd: Button by fxid()
     val btnCopy: Button by fxid()
     val btnZero: Button by fxid()
     val btnJump: Button by fxid()
-    var guiProgramm: URMGuiProgram by singleAssign()
+    var guiProgram: URMGuiProgram by singleAssign()
     var guiRegisters: URMGuiRegisters by singleAssign()
 
     init {
         btnStep.onAction = EventHandler {
-            guiProgramm.Step()
+            guiProgram.Step()
         }
 
         btnReset.onAction = EventHandler {
-            guiProgramm.Reset()
             guiRegisters.Reset()
+            guiProgram.Reset()
+        }
+
+        btnPlay.onAction = EventHandler {
+            if (!progress.value) {
+                runAsync {
+                    while (guiProgram.Step()) {
+                        if (!progress.value)
+                            return@runAsync
+                        Thread.sleep(sldSpeed.value.toLong())
+                    }
+                }
+            }
+            progress.value = !progress.value
+        }
+
+        registersWrapper.onScroll = EventHandler {
+            registersWrapper.hvalue -= it.getDeltaY();
         }
 
         btnAdd.onAction = EventHandler {
-            guiProgramm.AddCommand(URMCommandAdd(1))
+            guiProgram.AddCommand(URMCommandAdd(1))
         }
         btnCopy.onAction = EventHandler {
-            guiProgramm.AddCommand(URMCommandCopy(1, 1))
+            guiProgram.AddCommand(URMCommandCopy(1, 1))
         }
         btnZero.onAction = EventHandler {
-            guiProgramm.AddCommand(URMCommandZero(1))
+            guiProgram.AddCommand(URMCommandZero(1))
         }
         btnJump.onAction = EventHandler {
-            guiProgramm.AddCommand(URMCommandJump(1,1,1))
+            guiProgram.AddCommand(URMCommandJump(1,1,1))
         }
 
-        guiProgramm = URMGuiProgram(URMProgram())
-        AnchorPane.setBottomAnchor(guiProgramm.root, 0.0);
-        AnchorPane.setLeftAnchor(guiProgramm.root, 0.0);
-        AnchorPane.setRightAnchor(guiProgramm.root, 0.0);
-        AnchorPane.setTopAnchor(guiProgramm.root, 0.0);
-        programPane.add(guiProgramm.root)
+        guiProgram = URMGuiProgram(URMProgram())
+        AnchorPane.setBottomAnchor(guiProgram.root, 0.0);
+        AnchorPane.setLeftAnchor(guiProgram.root, 0.0);
+        AnchorPane.setRightAnchor(guiProgram.root, 0.0);
+        AnchorPane.setTopAnchor(guiProgram.root, 0.0);
+        programPane.add(guiProgram.root)
 
-        val registers = guiProgramm.program?.registers!!
+        val registers = guiProgram.program?.registers!!
         guiRegisters = URMGuiRegisters(registers)
         registers.registerListeners.add(guiRegisters)
         registersWrapper.add(guiRegisters.root)
+
+        guiProgram.Reset()
+
+        registersWrapper.hmaxProperty().bind(guiRegisters.root.widthProperty())
     }
 
 }

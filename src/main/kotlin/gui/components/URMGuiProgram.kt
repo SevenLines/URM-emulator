@@ -28,12 +28,15 @@ class URMGuiProgram(var program: URMProgram?) : Fragment() {
         return null
     }
 
-    fun Step() {
-        program?.Step()
+    fun Step() : Boolean {
+        return program?.Step()!!
     }
 
     fun Reset() {
         program?.Reset()
+        (1..100 step 1).forEach {
+            program?.registers!![it] = 0
+        }
     }
 
     fun AddCommand(command: URMCommand, index: Int = -1) {
