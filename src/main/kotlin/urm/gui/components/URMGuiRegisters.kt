@@ -1,8 +1,8 @@
-package gui.components
+package urm.gui.components
 
-import core.URMRegister
-import core.URMRegisterSetListener
-import core.URMRegisters
+import urm.core.URMRegister
+import urm.core.URMRegisterSetListener
+import urm.core.URMRegisters
 import javafx.scene.Parent
 import javafx.scene.layout.HBox
 import javafx.scene.layout.VBox

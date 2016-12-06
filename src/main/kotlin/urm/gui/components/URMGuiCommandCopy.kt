@@ -1,8 +1,8 @@
-package gui.components
+package urm.gui.components
 
-import core.URMCommand
-import core.URMCommandAdd
-import core.URMCommandCopy
+import urm.core.URMCommand
+import urm.core.URMCommandAdd
+import urm.core.URMCommandCopy
 import javafx.scene.Parent
 import javafx.scene.control.TextField
 import javafx.scene.layout.HBox

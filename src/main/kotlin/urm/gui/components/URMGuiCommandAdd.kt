@@ -1,26 +1,25 @@
-package gui.components
+package urm.gui.components
 
-import core.URMCommand
-import core.URMCommandAdd
-import core.URMCommandZero
+import urm.core.URMCommand
+import urm.core.URMCommandAdd
 import javafx.scene.control.TextField
 import javafx.scene.layout.HBox
-import tornadofx.Fragment
 import tornadofx.onChange
 
-class URMGuiCommandZero  (override var command: URMCommand, override var guiProgram: URMGuiProgram) :
+class URMGuiCommandAdd (override var command: URMCommand, override var guiProgram: URMGuiProgram) :
         URMGuiCommand(command, guiProgram) {
+
     override val root: HBox by fxml()
     val edtReg: TextField by fxid()
-    val realCommand = command as URMCommandZero
+    val realCommand = command as URMCommandAdd
+
 
     init {
         super.init()
         lateInit()
-
         edtReg.text = realCommand.reg.toString()
         edtReg.textProperty().onChange {
-            (command as? URMCommandZero)?.reg = it.orEmpty().toInt()
+            realCommand.reg = it.orEmpty().toInt()
         }
     }
 }

@@ -1,22 +1,17 @@
-package gui
+package urm.gui
 
-import core.*
-import gui.components.*
 import javafx.beans.property.SimpleBooleanProperty
 import javafx.event.EventHandler
-import javafx.scene.Parent
 import javafx.scene.control.Button
-import javafx.scene.control.ScrollBar
 import javafx.scene.control.ScrollPane
 import javafx.scene.control.Slider
 import javafx.scene.layout.AnchorPane
-import javafx.scene.layout.BorderPane
-import javafx.scene.layout.HBox
-import javafx.scene.layout.Pane
 import tornadofx.View
 import tornadofx.add
-import tornadofx.plusAssign
 import tornadofx.singleAssign
+import urm.core.*
+import urm.gui.components.URMGuiProgram
+import urm.gui.components.URMGuiRegisters
 
 class URMGui : View() {
     override val root: AnchorPane by fxml()

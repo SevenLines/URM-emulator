@@ -1,6 +1,6 @@
-package gui.components
+package urm.gui.components
 
-import core.URMRegister
+import urm.core.URMRegister
 import javafx.scene.control.Label
 import javafx.scene.control.TextField
 import javafx.scene.control.TextFormatter

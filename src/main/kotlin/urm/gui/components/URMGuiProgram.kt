@@ -1,6 +1,6 @@
-package gui.components
+package urm.gui.components
 
-import core.*
+import urm.core.*
 import javafx.scene.Parent
 import javafx.scene.layout.AnchorPane
 import javafx.scene.layout.HBox
@@ -9,6 +9,7 @@ import tornadofx.Fragment
 import tornadofx.add
 import tornadofx.addChildIfPossible
 import tornadofx.removeFromParent
+import urm.core.*
 
 
 class URMGuiProgram(var program: URMProgram?) : Fragment() {
@@ -43,9 +44,12 @@ class URMGuiProgram(var program: URMProgram?) : Fragment() {
         command.program = program
         program?.AddCommand(command, index)
         if (program != null) {
-            var commandComponent = GetComponentForCommand(command)
+            val commandComponent = GetComponentForCommand(command)
             if (commandComponent !=null) {
                 commandsList.add(commandComponent.root)
+                if (program!!.commands.size <= 1) {
+                    Reset()
+                }
             }
         }
     }

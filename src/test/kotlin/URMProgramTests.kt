@@ -1,6 +1,7 @@
-import core.*
+import urm.core.*
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
+import urm.core.*
 
 class URMProgramTests {
     @Test

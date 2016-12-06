@@ -1,8 +1,8 @@
-package gui.components
+package urm.gui.components
 
-import core.URMCommand
-import core.URMCommandCopy
-import core.URMCommandJump
+import urm.core.URMCommand
+import urm.core.URMCommandCopy
+import urm.core.URMCommandJump
 import javafx.scene.control.TextField
 import javafx.scene.layout.HBox
 import tornadofx.Fragment

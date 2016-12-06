@@ -1,4 +1,4 @@
-package core
+package urm.core
 
 class URMCommandCopy(var reg1: Int, var reg2: Int, program: URMProgram? = null) : URMCommand(program) {
     override fun Execute() {

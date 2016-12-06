@@ -1,4 +1,4 @@
-package core
+package urm.core
 
 import javafx.beans.property.SimpleIntegerProperty
 import tornadofx.onChange

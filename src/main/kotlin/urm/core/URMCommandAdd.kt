@@ -1,4 +1,4 @@
-package core
+package urm.core
 
 class URMCommandAdd(var reg: Int, program: URMProgram? = null) : URMCommand(program) {
     override fun Execute() {

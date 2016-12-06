@@ -1,4 +1,4 @@
-package core
+package urm.core
 
 open class URMProgram {
     var commands: MutableList<URMCommand> = mutableListOf()

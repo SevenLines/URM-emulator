@@ -2,7 +2,7 @@ group 'URM'
 version '1.0-SNAPSHOT'
 
 buildscript {
-    ext.kotlin_version = '1.0.5'
+    ext.kotlin_version = '1.0.5-2'
 
     repositories {
         mavenCentral()
@@ -16,7 +16,7 @@ apply plugin: 'java'
 apply plugin: 'kotlin'
 apply plugin: 'application'
 
-mainClassName = "URMGuiApp"
+mainClassName = "urm.URMGuiApp"
 
 sourceCompatibility = 1.5
 
@@ -33,11 +33,9 @@ dependencies {
 
 jar {
     manifest {
-        attributes 'Main-Class': 'URMGuiApp',
-                'Application-Name': 'URM Emulator'
+        attributes 'Main-Class': 'urm.URMGuiApp'
     }
-    version ""
-    destinationDir file("$projectDir")
+
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
 }
 
