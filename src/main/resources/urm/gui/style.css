@@ -31,9 +31,6 @@
   .button:hover {
     -fx-background-color: whitesmoke; }
 
-.toolbar {
-  -fx-background-color: silver; }
-
 .add {
   -fx-background-color: greenyellow;
   -fx-border-color: #79c800;

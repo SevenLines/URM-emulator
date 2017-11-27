@@ -55,6 +55,11 @@ open class URMGuiCommand(open var command: URMCommand, open var guiProgram: URMG
                 }
             })
         }
+
+        root.onMouseDragged = EventHandler { e ->
+            val point = this.root.localToScene(e.x, e.y)
+            guiProgram.dragged(this, point)
+        }
     }
 
 }

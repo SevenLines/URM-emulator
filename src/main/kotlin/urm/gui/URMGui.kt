@@ -38,18 +38,24 @@ class URMGui : View() {
         }
 
         btnReset.onAction = EventHandler {
-            guiRegisters.Reset()
+            progress.value = false;
+//            guiRegisters.Reset()
             guiProgram.Reset()
         }
 
         btnPlay.onAction = EventHandler {
             if (!progress.value) {
+                guiProgram.Reset()
                 runAsync {
                     while (guiProgram.Step()) {
                         if (!progress.value)
                             return@runAsync
                         Thread.sleep(sldSpeed.value.toLong())
+                        if (!progress.value)
+                            return@runAsync
                     }
+                    progress.value = false
+                    guiProgram.Reset()
                 }
             }
             progress.value = !progress.value
@@ -84,7 +90,7 @@ class URMGui : View() {
         registers.registerListeners.add(guiRegisters)
         registersWrapper.add(guiRegisters.root)
 
-        guiProgram.Reset()
+        guiProgram.Reset(true)
 
         registersWrapper.hmaxProperty().bind(guiRegisters.root.widthProperty())
     }

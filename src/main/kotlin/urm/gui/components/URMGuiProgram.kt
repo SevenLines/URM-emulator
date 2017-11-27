@@ -1,15 +1,13 @@
 package urm.gui.components
 
+import javafx.event.EventHandler
+import javafx.geometry.Point2D
 import urm.core.*
-import javafx.scene.Parent
 import javafx.scene.layout.AnchorPane
-import javafx.scene.layout.HBox
 import javafx.scene.layout.VBox
 import tornadofx.Fragment
 import tornadofx.add
-import tornadofx.addChildIfPossible
 import tornadofx.removeFromParent
-import urm.core.*
 
 
 class URMGuiProgram(var program: URMProgram?) : Fragment() {
@@ -29,14 +27,20 @@ class URMGuiProgram(var program: URMProgram?) : Fragment() {
         return null
     }
 
-    fun Step() : Boolean {
+    init {
+
+    }
+
+    fun Step(): Boolean {
         return program?.Step()!!
     }
 
-    fun Reset() {
-        program?.Reset()
-        (1..100 step 1).forEach {
-            program?.registers!![it] = 0
+    fun Reset(with_registers: Boolean = false) {
+        program?.Reset(with_registers)
+        if (with_registers) {
+            (1..100 step 1).forEach {
+                program?.registers!![it] = 0
+            }
         }
     }
 
@@ -45,7 +49,7 @@ class URMGuiProgram(var program: URMProgram?) : Fragment() {
         program?.AddCommand(command, index)
         if (program != null) {
             val commandComponent = GetComponentForCommand(command)
-            if (commandComponent !=null) {
+            if (commandComponent != null) {
                 commandsList.add(commandComponent.root)
                 if (program!!.commands.size <= 1) {
                     Reset()
@@ -65,6 +69,19 @@ class URMGuiProgram(var program: URMProgram?) : Fragment() {
         if (program != null) {
             command.removeFromParent()
             program?.RemoveCommand(command.command)
+        }
+    }
+
+    fun dragged(urmGuiCommand: URMGuiCommand, point: Point2D) {
+        val command = commandsList.children.firstOrNull {
+            it.localToScene(it.boundsInLocal).contains(point)
+        }
+        if (command != null && command != urmGuiCommand.root) {
+            val oldIndex = commandsList.children.indexOf(urmGuiCommand.root)
+            val newIndex = commandsList.children.indexOf(command)
+            commandsList.children.remove(command)
+            commandsList.children.add(oldIndex, command)
+            program?.MoveCommand(urmGuiCommand.command, newIndex)
         }
     }
 }
