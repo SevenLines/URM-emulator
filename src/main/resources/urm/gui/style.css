@@ -3,7 +3,7 @@
   -fx-background-radius: 9;
   -fx-border-style: solid;
   -fx-border-width: 3px;
-  -fx-font-size: 1.5em; }
+  -fx-font-size: 1.1em; }
   .command .text-field {
     -fx-padding: 0;
     -fx-min-width: 38px;
@@ -31,6 +31,18 @@
   .button:hover {
     -fx-background-color: whitesmoke; }
 
+.command-container:odd {
+  -fx-background-color: #ffffff; }
+
+.command-container {
+  -fx-padding: 3px; }
+  .command-container.current {
+    -fx-background-color: #ffe28e; }
+    .command-container.current .mark {
+      visibility: visible; }
+  .command-container .mark {
+    visibility: hidden; }
+
 .add {
   -fx-background-color: greenyellow;
   -fx-border-color: #79c800;
@@ -44,8 +56,6 @@
       -fx-background-color: #ef661d; }
   .add:hover {
     -fx-border-color: #3b6200; }
-  .add.current {
-    -fx-border-color: red; }
   .add .text-field {
     -fx-background-color: #b3ff3e;
     -fx-border-style: none; }
@@ -65,8 +75,6 @@
       -fx-background-color: #ff5625; }
   .jump:hover {
     -fx-border-color: #523a00; }
-  .jump.current {
-    -fx-border-color: red; }
   .jump .text-field {
     -fx-background-color: #ffc22e;
     -fx-border-style: none; }
@@ -86,8 +94,6 @@
       -fx-background-color: #c25b6a; }
   .zero:hover {
     -fx-border-color: #005571; }
-  .zero.current {
-    -fx-border-color: red; }
   .zero .text-field {
     -fx-background-color: #4dd3ff;
     -fx-border-style: none; }
@@ -107,8 +113,6 @@
       -fx-background-color: #ee526d; }
   .copy:hover {
     -fx-border-color: #5300db; }
-  .copy.current {
-    -fx-border-color: red; }
   .copy .text-field {
     -fx-background-color: #d2b7ff;
     -fx-border-style: none; }

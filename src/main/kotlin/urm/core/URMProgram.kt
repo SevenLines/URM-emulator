@@ -9,15 +9,13 @@ open class URMProgram {
     var registers: URMRegisters = URMRegisters()
 
     var currentCommandIndex: Int = 0
-        get() = field
         set(value) {
             // set to false old value
-            if (field != value)
-                if (field >= 0 && commands.count() > field)
-                    commands[field].isActive.value = false
-
+            commands.forEach {
+                it.isActive.value = false
+            }
             // set to true new value
-            if (value >= 0 && commands.count() > value)
+            if (commands.count() > value)
                 if (commands[value].isActive.value != true)
                     commands[value].isActive.value = true
 

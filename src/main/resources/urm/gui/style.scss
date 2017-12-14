@@ -3,9 +3,10 @@
   -fx-background-radius: 9;
   -fx-border-style: solid;
   -fx-border-width: 3px;
-  -fx-font-size: 1.5em;
+  -fx-font-size: 1.1em;
   .label {
   }
+
   .text-field {
     -fx-padding: 0;
     -fx-min-width: 38px;
@@ -13,7 +14,7 @@
     -fx-alignment: center;
   }
   .button {
-    -fx-border-style:  solid;
+    -fx-border-style: solid;
     -fx-border-width: 0 0 0 2px;
     -fx-background-radius: 0 7 7 0;
   }
@@ -47,6 +48,25 @@
   //-fx-background-color: silver;
 }
 
+.command-container {
+  &:odd {
+    -fx-background-color: #ffffff;
+  }
+}
+
+.command-container {
+  -fx-padding: 3px;
+
+  &.current {
+    -fx-background-color: #ffe28e;
+    .mark {
+      visibility: visible;
+    }
+  }
+  .mark {
+    visibility: hidden;
+  }
+}
 
 @mixin commandClr($color) {
   -fx-background-color: $color;
@@ -64,9 +84,9 @@
   &:hover {
     -fx-border-color: darken($color, 40);
   }
-  &.current {
-    -fx-border-color: red;
-  }
+  //&.current {
+  //  -fx-background-color: red;
+  //}
   .text-field {
     -fx-background-color: lighten($color, 3);
     -fx-border-style: none;

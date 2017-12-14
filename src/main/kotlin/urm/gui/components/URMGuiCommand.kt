@@ -33,7 +33,7 @@ open class URMGuiCommand(open var command: URMCommand, open var guiProgram: URMG
                 runnable = null
             }
             runnable = Runnable({
-                componentsWrapper.toggleClass("current", value)
+                root.toggleClass("current", value)
             })
             Platform.runLater(runnable)
         }
@@ -54,6 +54,10 @@ open class URMGuiCommand(open var command: URMCommand, open var guiProgram: URMG
                     return@TextFormatter it
                 }
             })
+        }
+
+        root.onMouseEntered = EventHandler {
+            guiProgram.commandMouseEntered(this)
         }
 
         root.onMouseDragged = EventHandler { e ->

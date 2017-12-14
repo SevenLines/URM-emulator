@@ -5,6 +5,7 @@ import javafx.event.EventHandler
 import javafx.scene.control.Button
 import javafx.scene.control.ScrollPane
 import javafx.scene.control.Slider
+import javafx.scene.input.KeyCode
 import javafx.scene.layout.AnchorPane
 import tornadofx.View
 import tornadofx.add
@@ -20,7 +21,7 @@ class URMGui : View() {
 
     val btnStep: Button by fxid()
     val btnPlay: Button by fxid()
-    val btnReset: Button by fxid()
+    val btnStop: Button by fxid()
     val sldSpeed: Slider by fxid()
 
     private var progress = SimpleBooleanProperty(false);
@@ -37,12 +38,6 @@ class URMGui : View() {
             guiProgram.Step()
         }
 
-        btnReset.onAction = EventHandler {
-            progress.value = false;
-//            guiRegisters.Reset()
-            guiProgram.Reset()
-        }
-
         btnPlay.onAction = EventHandler {
             if (!progress.value) {
                 guiProgram.Reset()
@@ -50,7 +45,7 @@ class URMGui : View() {
                     while (guiProgram.Step()) {
                         if (!progress.value)
                             return@runAsync
-                        Thread.sleep(sldSpeed.value.toLong())
+                        Thread.sleep(sldSpeed.max.toLong() - sldSpeed.value.toLong())
                         if (!progress.value)
                             return@runAsync
                     }
@@ -76,6 +71,19 @@ class URMGui : View() {
         }
         btnJump.onAction = EventHandler {
             guiProgram.AddCommand(URMCommandJump(1,1,1))
+        }
+        btnStop.onAction = EventHandler {
+            progress.value = false
+            guiProgram.Reset()
+        }
+
+        root.setOnKeyPressed { e ->
+            when (e.code) {
+                KeyCode.F8 -> btnStep.fire()
+                KeyCode.F5 -> btnPlay.fire()
+                KeyCode.F6 -> btnStop.fire()
+                else -> {}
+            }
         }
 
         guiProgram = URMGuiProgram(URMProgram())

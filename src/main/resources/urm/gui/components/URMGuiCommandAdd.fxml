@@ -7,12 +7,13 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
 
-<HBox prefHeight="36.0" prefWidth="167.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<HBox prefHeight="36.0" prefWidth="167.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <HBox alignment="CENTER" fx:id="componentsWrapper">
+      <HBox fx:id="componentsWrapper" alignment="CENTER">
          <children>
-            <HBox alignment="CENTER"  fx:id="components" spacing="5.0">
+            <HBox fx:id="components" alignment="CENTER" spacing="5.0">
                <children>
                   <Label minWidth="-Infinity" text="S(" />
                   <TextField id="edtReg" fx:id="edtReg" />
@@ -22,7 +23,7 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </HBox>
-            <Button styleClass="remove" mnemonicParsing="false" text="x" textOverrun="CLIP" fx:id="btnRemove"/>
+            <Button fx:id="btnRemove" mnemonicParsing="false" styleClass="remove" text="x" textOverrun="CLIP" />
          </children>
          <styleClass>
             <String fx:value="command" />
@@ -30,5 +31,16 @@
          </styleClass>
       </HBox>
       <Pane HBox.hgrow="ALWAYS" />
+      <Circle fx:id="mark" fill="#ffa81f" radius="10.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+         <HBox.margin>
+            <Insets bottom="4.0" left="4.0" right="4.0" top="10.0" />
+         </HBox.margin>
+         <styleClass>
+            <String fx:value="mark" />
+         </styleClass>
+      </Circle>
    </children>
+   <styleClass>
+      <String fx:value="command-container" />
+   </styleClass>
 </HBox>

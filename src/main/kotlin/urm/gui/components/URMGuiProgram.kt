@@ -2,17 +2,23 @@ package urm.gui.components
 
 import javafx.event.EventHandler
 import javafx.geometry.Point2D
+import javafx.scene.Node
+import javafx.scene.control.ScrollPane
 import urm.core.*
 import javafx.scene.layout.AnchorPane
+import javafx.scene.layout.HBox
 import javafx.scene.layout.VBox
+import javafx.scene.shape.Polyline
 import tornadofx.Fragment
 import tornadofx.add
 import tornadofx.removeFromParent
+import javafx.scene.shape.QuadCurve
 
 
 class URMGuiProgram(var program: URMProgram?) : Fragment() {
     override val root: AnchorPane by fxml()
     val commandsList: VBox by fxid()
+    val scrollWrapper: ScrollPane by fxid()
 
     private fun GetComponentForCommand(command: URMCommand): URMGuiCommand? {
         if (command.javaClass == URMCommandAdd::class.java) {
@@ -28,7 +34,7 @@ class URMGuiProgram(var program: URMProgram?) : Fragment() {
     }
 
     init {
-
+        commandsList.prefWidthProperty().bind(scrollWrapper.widthProperty())
     }
 
     fun Step(): Boolean {
@@ -54,6 +60,7 @@ class URMGuiProgram(var program: URMProgram?) : Fragment() {
                 if (program!!.commands.size <= 1) {
                     Reset()
                 }
+                Reset()
             }
         }
     }
@@ -69,6 +76,7 @@ class URMGuiProgram(var program: URMProgram?) : Fragment() {
         if (program != null) {
             command.removeFromParent()
             program?.RemoveCommand(command.command)
+            Reset()
         }
     }
 
@@ -82,6 +90,37 @@ class URMGuiProgram(var program: URMProgram?) : Fragment() {
             commandsList.children.remove(command)
             commandsList.children.add(oldIndex, command)
             program?.MoveCommand(urmGuiCommand.command, newIndex)
+        }
+//        if (program?.currentCommand == urmGuiCommand.command) {
+        Reset()
+//        }
+    }
+
+    fun scrollToCommand(node: Node) {
+        val viewport = this.scrollWrapper.viewportBounds
+//        var contentHeight =
+    }
+
+    fun commandMouseEntered(urmGuiCommand: URMGuiCommand) {
+        if (urmGuiCommand.javaClass == URMGuiCommandJump::class.java) {
+            val startY = urmGuiCommand.root.layoutY + urmGuiCommand.root.height / 2
+            val index = (urmGuiCommand.command as URMCommandJump).commandIndex - 1
+
+            if (index < commandsList.children.count()) {
+                val commandTo = commandsList.children[index] as HBox;
+                val endY = commandTo.layoutY + commandTo.height / 2
+
+//                path.points.removeAll { true }
+//                path.points.addAll(
+//                        urmGuiCommand.root.layoutX, startY,
+//                        urmGuiCommand.root.width, startY,
+//                        urmGuiCommand.root.width, endY,
+//                        urmGuiCommand.root.layoutX, endY
+//                )
+//
+//                path.isVisible = true
+            }
+        } else {
         }
     }
 }

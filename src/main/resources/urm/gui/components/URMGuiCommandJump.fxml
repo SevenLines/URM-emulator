@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.shape.Circle?>
 <HBox xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <HBox alignment="CENTER" fx:id="componentsWrapper">
@@ -35,5 +36,16 @@
             </styleClass>
         </HBox>
         <Pane HBox.hgrow="ALWAYS"/>
+        <Circle fx:id="mark" fill="#ffa81f" radius="10.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+            <HBox.margin>
+                <Insets bottom="4.0" left="4.0" right="4.0" top="10.0" />
+            </HBox.margin>
+            <styleClass>
+                <String fx:value="mark" />
+            </styleClass>
+        </Circle>
     </children>
+    <styleClass>
+        <String fx:value="command-container" />
+    </styleClass>
 </HBox>
